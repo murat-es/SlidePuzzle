@@ -40,15 +40,12 @@ const App = () => {
   // }
 
   useEffect(() => {
-    console.log("bitti mi", checkOver())
-
     checkOver() ? setOver(true) : setOver(false)
 
   }, [cells])
 
   const slide = (i, j) => {
 
-    console.log("index", i, j, cells[i][j])
 
     if (j + 1 < 4 && cells[i][j + 1] === null) {
       let copy = [...cells]
@@ -102,8 +99,6 @@ const App = () => {
       let i2 = Math.floor(Math.random() * 4)
       let j2 = Math.floor(Math.random() * 4)
 
-      console.log("i1", i1)
-
       let copy = [...cells]
       const temp = copy[i1][j1]
       copy[i1][j1] = copy[i2][j2]
@@ -117,9 +112,7 @@ const App = () => {
     for (let i = 0; i < cells.length; i++) {
       for (let j = 0; j < cells.length; j++) {
         let no = (4 * i) + (j + 1)
-        console.log("no", no, cells[i][j])
         if (i === 3 && j === 3 && cells[i][j] === null) {
-          console.log("girdi mi")
           return true
         }
         if (cells[i][j] !== no) {
