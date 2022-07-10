@@ -15,7 +15,11 @@ import {
   TouchableOpacity,
   View,
   Button,
+  Dimensions
 } from 'react-native';
+import Level from './components/Level';
+const screenWidth = Dimensions.get('window').width;
+
 
 
 
@@ -31,13 +35,6 @@ const App = () => {
 
   const [move, setMove] = useState(0)
   const [over, setOver] = useState(false)
-
-
-  // for (let i = 0; i < 4; i++) {
-  //   for (let j = 0; j < 4; j++) {
-  //     console.log(cells[i][j])
-  //   }
-  // }
 
   useEffect(() => {
     checkOver() ? setOver(true) : setOver(false)
@@ -139,6 +136,7 @@ const App = () => {
   return (
     <SafeAreaView >
       <StatusBar />
+      <Level />
       <View style={styles.container}>
         {cells.map((i, indexI) =>
           i.map((j, indexJ) => {
@@ -154,7 +152,7 @@ const App = () => {
         )}
       </View>
       <Text style={styles.move}>Move: {move}</Text>
-      {over && <Text>Tebrikler</Text>}
+      {over && <Text style={styles.move}>Tebrikler</Text>}
 
       <Button
         onPress={random}
@@ -171,14 +169,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     backgroundColor: "#18978F",
-
-
+    padding: screenWidth * 0.01
   },
   numberGrid: {
     backgroundColor: "#E9DAC1",
-    width: "20%",
-    margin: 10,
-    height: 100,
+    borderWidth: 0,
+    width: (screenWidth - screenWidth * 0.01 * 10) / 4,
+    margin: screenWidth * 0.01,
+    height: (screenWidth - screenWidth * 0.01 * 10) / 4,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 5
